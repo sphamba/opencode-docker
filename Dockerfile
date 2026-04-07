@@ -32,7 +32,6 @@ RUN wget -qO- https://astral.sh/uv/install.sh | sh && \
 
 # Prevent directories from being read-only when mounting config files
 RUN mkdir -p /home/user/.config/opencode && \
-	mkdir -p /home/user/.local/share/opencode && \
 	mkdir -p /home/user/.serena/contexts
 
 ENTRYPOINT ["sh", "-c", "opencode \"$@\"", "--"]
