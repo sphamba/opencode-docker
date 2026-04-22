@@ -41,4 +41,4 @@ RUN curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/in
 RUN mkdir -p /home/user/.config/opencode && \
 	mkdir -p /home/user/.serena/contexts
 
-ENTRYPOINT ["sh", "-c", "opencode \"$@\"", "--"]
+ENTRYPOINT ["sh", "-c", "opencode \"$@\"", "sh"]

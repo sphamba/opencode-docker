@@ -22,4 +22,5 @@ docker run \
   -v ${XDG_RUNTIME_DIR}/wayland-0:${XDG_RUNTIME_DIR}/wayland-0 \
   -v /run/user/$(id -u)/bus:/run/user/$(id -u)/bus \
   opencode-local \
-  /home/user/$(basename "$PWD")
+  /home/user/$(basename "$PWD") \
+  "$@"
