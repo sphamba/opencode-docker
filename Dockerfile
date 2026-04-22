@@ -6,6 +6,7 @@ ARG PYTHON_VERSION=3.12
 RUN apk add --no-cache \
 	bash \
 	wget \
+	curl \
 	git \
 	npm \
 	build-base \
@@ -28,9 +29,13 @@ ENV NVM_DIR=/home/user/.nvm
 ENV PATH=/home/user/.local/bin:$PATH
 
 # Install uv + Python
-RUN wget -qO- https://astral.sh/uv/install.sh | sh && \
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
     export PATH="$HOME/.local/bin:$PATH" && \
     uv python install ${PYTHON_VERSION} --default
+
+# Install rtk
+RUN curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh && \
+    export PATH="$HOME/.local/bin:$PATH"
 
 # Prevent directories from being read-only when mounting config files
 RUN mkdir -p /home/user/.config/opencode && \
