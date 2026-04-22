@@ -11,7 +11,9 @@ RUN apk add --no-cache \
 	build-base \
     python3-dev \
 	libffi-dev \
-    openssl-dev
+    openssl-dev \
+	libnotify \
+	pulseaudio-utils
 
 # Create user with build-time UID
 RUN adduser -D -u ${UID} user && \

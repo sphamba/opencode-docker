@@ -1,24 +1,28 @@
-Build command:
+# Build the image
+
 ```bash
 docker build --build-arg UID=$(id -u) -t opencode-local .
 ```
 
-Run command:
+# Run with sound and notifications (Hyprland/PipeWire)
+
 ```bash
-docker run \
-  -it \
-  --rm \
-  --name opencode-$(basename "$PWD") \
-  --security-opt=no-new-privileges \
-  -v ~/.config/opencode:/home/user/.config/opencode:ro \
-  -v ~/.local/share/opencode:/home/user/.local/share/opencode \
-  -v ~/.serena/contexts/opencode.yml:/home/user/.serena/contexts/opencode.yml:ro \
-  -v $(pwd):/home/user/$(basename "$PWD") \
-  opencode-local \
-  /home/user/$(basename "$PWD")
+./run-opencode.sh
 ```
 
-Create alias:
+# Create `opencode` alias
+
+Add to your `~/.bashrc` or `~/.zshrc`:
 ```bash
-alias opencode='docker run -it --rm --name opencode-$(basename "$PWD") --security-opt=no-new-privileges -v ~/.config/opencode:/home/user/.config/opencode:ro -v ~/.local/share/opencode:/home/user/.local/share/opencode -v ~/.serena/contexts/opencode.yml:/home/user/.serena/contexts/opencode.yml:ro -v $(pwd):/home/user/$(basename "$PWD") opencode-local /home/user/$(basename "$PWD")'
+alias opencode='/path/to/opencode-docker/run-opencode.sh'
+```
+
+Or create a symlink in your PATH:
+```bash
+sudo ln -s /path/to/opencode-docker/run-opencode.sh /usr/local/bin/opencode
+```
+
+Then just run:
+```bash
+opencode
 ```
